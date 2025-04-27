@@ -1,3 +1,3 @@
 export const Filter = () => {
-  return <>Filter component</>;
+  return <div className="hidden md:block">Filter component</div>;
 };
