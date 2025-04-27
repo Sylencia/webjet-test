@@ -2,4 +2,6 @@
 
 @theme {
   --breakpoint-lg: 62rem;
+
+  --color-webjet-red: #dc140a;
 }
