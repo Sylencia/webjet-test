@@ -42,23 +42,15 @@ const mockHotelListings: HotelListingType[] = [
 interface HotelState {
   hotels: HotelListingType[];
   nameFilter: string;
+  setNameFilter: (name: string) => void;
   qualityFilter: number[];
-  getFilteredHotels: () => HotelListingType[];
 }
 
 export const useHotelStore = create<HotelState>((set, get) => ({
   hotels: mockHotelListings,
   nameFilter: '',
-  qualityFilter: [],
-  getFilteredHotels: () => {
-    const { hotels, nameFilter, qualityFilter } = get();
-
-    const matchesName = (hotel: HotelListingType) => hotel.name.toLowerCase().includes(nameFilter.toLowerCase());
-
-    const matchesQuality = (hotel: HotelListingType) =>
-      qualityFilter.length === 0 ||
-      qualityFilter.some((quality) => hotel.rating >= quality && hotel.rating < quality + 1);
-
-    return hotels.filter((hotel) => matchesName(hotel) && matchesQuality(hotel));
+  setNameFilter: (name: string) => {
+    set({ nameFilter: name });
   },
+  qualityFilter: [],
 }));
