@@ -37,6 +37,13 @@ const mockHotelListings: HotelListingType[] = [
     roomType: 'King Room',
     price: 180,
   },
+  {
+    name: '5 Star Melbourne',
+    imageUrl: 'https://hotelimages.webjet.com.au/lodging/1000000/850000/845400/845390/e394a620_z.jpg',
+    rating: 5.0,
+    roomType: 'Luxury Suite Room',
+    price: 800,
+  },
 ];
 
 interface HotelState {
@@ -44,13 +51,17 @@ interface HotelState {
   nameFilter: string;
   setNameFilter: (name: string) => void;
   qualityFilter: number[];
+  setQualityFilter: (rating: number[]) => void;
 }
 
-export const useHotelStore = create<HotelState>((set, get) => ({
+export const useHotelStore = create<HotelState>((set) => ({
   hotels: mockHotelListings,
   nameFilter: '',
   setNameFilter: (name: string) => {
     set({ nameFilter: name });
   },
   qualityFilter: [],
+  setQualityFilter: (rating: number[]) => {
+    set({ qualityFilter: rating });
+  },
 }));
